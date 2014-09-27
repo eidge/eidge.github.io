@@ -1,1 +1,6 @@
-Hi there! It's up and running!
+---
+layout: post
+title: You're up and running!
+---
+
+blah
