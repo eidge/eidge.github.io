@@ -65,5 +65,9 @@ $ psql -h localhost -U postgres # make sure you don't have other programs on lis
 or by firing up another container:
 
 ```
+$ docker run -it --link db:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres' # the --rm flag tells docker to destroy the container after the command finishes (when you exit psql)
 ```
+
+#### nginx
+#### ruby
 
