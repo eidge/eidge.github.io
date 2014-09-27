@@ -4,12 +4,14 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Full-stack developer from Monday to Friday at [Nourish Care](http://nourishcare.co.uk).
 
-### More Information
+Full-stack developer on rainy Saturdays and Sundays at [IntoCross](http://intocross.com).
 
-A place to include any other types of information that you'd like to include about yourself. 
+Paragliding pilot the rest of the time.
 
-### Contact me
+### Background
 
-[email@domain.com](mailto:email@domain.com)
+Started programming at the age of 10 because I wanted to be an hacker.
+
+Had some fun with C and C++, currently working with Ruby and having some fun with nodejs.
