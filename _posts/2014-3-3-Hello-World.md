@@ -71,3 +71,90 @@ $ docker run -it --link db:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES
 #### nginx
 #### ruby
 
+This layer will run sinatra through unicorn and connect to the db container. To setup unicorn I've created a *unicorn.conf* file inside the root of my sinatra app.
+
+```
+worker_processes 8
+working_directory "/home/rubier/YOUR_APP/" # Change this to your app name
+
+listen 'localhost:8888', :backlog => 512   # We'll listen on a ip socket instead of a file,
+                                           # to facilitate communication with the nginx container.
+timeout 120
+pid "/home/rubier/unicorn.pid"             # This part is actually not very important since we'll
+                                           # destroy the container on every new deploy.
+
+preload_app true
+if GC.respond_to?(:copy_on_write_friendly=)
+  GC.copy_on_write_friendly = true
+end
+
+before_fork do |server, worker|
+ old_pid = "#{server.config[:pid]}.oldbin"
+ if File.exists?(old_pid) && server.pid != old_pid
+   begin
+     Process.kill("QUIT", File.read(old_pid).to_i)
+   rescue Errno::ENOENT, Errno::ESRCH
+     # someone else did our job for us
+   end
+ end
+end
+```
+
+Unicorn is a rack server, therefore we'll also need a simple *config.ru* file:
+
+```
+require 'sinatra'
+set :env, :production
+disable :run
+require 'app.rb' # Of whatever you've called your application file
+run Sinatra::Application
+```
+
+Now that the configuration for unicorn and rack is done, let's create a custom container for our app. Inside your sinatra app create the following *Dockerfile*:
+
+```
+FROM ubuntu:14.04
+MAINTAINER Your Name <your@email.address>
+
+RUN apt-get update && apt-get install -y curl procps && rm -rf /var/lib/apt/lists/*
+
+# Install rbenv and some dependencies we'll need for ruby and nokogiri
+RUN apt-get update \
+  && apt-get install rbenv -y \
+  && apt-get install git -y \
+  && apt-get install build-essential -y \
+  && apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev -y
+RUN apt-get update && apt-get install libxslt-dev libxml2-dev -y && apt-get install libpq-dev -y
+
+# Create an unprivileged user
+RUN adduser rubier
+USER rubier
+
+# skip installing gem documentation
+RUN echo 'gem: --no-rdoc --no-ri' >> ~/.gemrc
+
+# Install ruby-build
+RUN git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+# Compile ruby and install bundler
+RUN rbenv install 2.1.3 && rbenv global 2.1.3 && rbenv rehash
+RUN rbenv exec gem install bundler
+
+# Copy code from the current directory to the docker container
+COPY . /app/
+
+# Make an user privileged copy of the code
+RUN cp -R /app /home/rubier/
+# Run bundle install
+RUN cd /home/rubier/app && rbenv exec bundle install
+
+# Expose unicorn socket
+EXPOSE 8888
+WORKDIR /home/rubier/tephi
+
+# Start unicorn when the container initializes
+CMD rbenv exec bundle exec unicorn -c ./unicorn.conf
+```
+
+
+
+
