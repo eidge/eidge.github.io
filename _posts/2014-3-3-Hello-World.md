@@ -155,6 +155,11 @@ WORKDIR /home/rubier/tephi
 CMD rbenv exec bundle exec unicorn -c ./unicorn.conf
 ```
 
+Start the container:
+
+```
+sudo docker run -d --name app --link db:postgres -p 8000:8888 eidge/ruby-tesseract-imagemagick
+```
 
 
 
