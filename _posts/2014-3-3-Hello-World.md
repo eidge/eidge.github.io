@@ -56,7 +56,7 @@ The container provided with Docker comes configured and fully functional, if you
 $ docker run --name db -d postgres
 ```
 
-This command starts a deamonized container running postgres with the port 5432 exposed. You can connect to the database by either running:
+This command starts a deamonized container running postgres with the port 5432 exposed. You can connect to the database by either running (in this case you need to add the flag *-p 5432:5432* to map the container port to a localhost port):
 
 ```
 $ psql -h localhost -U postgres # make sure you don't have other programs on listening on 5432
@@ -68,7 +68,6 @@ or by firing up another container:
 $ docker run -it --link db:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres' # the --rm flag tells docker to destroy the container after the command finishes (when you exit psql)
 ```
 
-#### nginx
 #### ruby
 
 This layer will run sinatra through unicorn and connect to the db container. To setup unicorn I've created a *unicorn.conf* file inside the root of my sinatra app.
@@ -155,11 +154,20 @@ WORKDIR /home/rubier/tephi
 CMD rbenv exec bundle exec unicorn -c ./unicorn.conf
 ```
 
-Start the container:
+Create the image:
 
 ```
-sudo docker run -d --name app --link db:postgres -p 8000:8888 eidge/ruby-tesseract-imagemagick
+sudo docker build -t="ruby-sinatra" APP_PATH/ (where APP_PATH is the path for your sinatra app)
 ```
 
+Let's make sure everything works:
 
+```
+sudo docker run --rm --name app --link db:postgres -p 8000:8888 ruby-sinatra /bin/bash
+```
 
+A shell should fire up and should be able to setup your database with a ```rake db:migrate```.
+
+#### nginx
+
+Finally we need to setup nginx to proxy our port 80.
