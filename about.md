@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Head of Software from Monday to Friday at [Nourish Care](http://nourishcare.co.uk).
+Head of Software at [Nourish Care](http://nourishcare.co.uk).
 
 Pet-project programmer on most nights, rainy Saturdays and Sundays.
 
