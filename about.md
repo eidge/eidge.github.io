@@ -4,9 +4,9 @@ title: About
 permalink: /about/
 ---
 
-Full-stack developer from Monday to Friday at [Nourish Care](http://nourishcare.co.uk).
+Head of Software from Monday to Friday at [Nourish Care](http://nourishcare.co.uk).
 
-Full-stack developer on rainy Saturdays and Sundays at [IntoCross](http://intocross.com).
+Pet-project programmer on most nights, rainy Saturdays and Sundays.
 
 Paragliding pilot the rest of the time.
 
@@ -14,4 +14,4 @@ Paragliding pilot the rest of the time.
 
 Started programming at the age of 10 because I wanted to be an hacker.
 
-Had some fun with C and C++, currently working with Ruby and having some fun with nodejs.
+Had some fun with C and C++, currently working with Ruby, excited about elixir.
