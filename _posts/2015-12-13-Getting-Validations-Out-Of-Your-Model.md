@@ -97,7 +97,7 @@ If your validations are coupled to a specific action (say user registration) the
 
 #### A better solution: Form objects
 
-[Form objects](https://robots.thoughtbot.com/activemodel-form-objects) have been an essential tool in my day to day with Rails. Not only it makes dealing with complicated forms cleaner (think *accepts_nested_attributes*, or *json* fields) it also helps declutter your models and controllers.
+[Form objects](https://robots.thoughtbot.com/activemodel-form-objects) have been an essential tool in my day to day with Rails. Not only it makes dealing with complicated forms cleaner (think *accepts__nested__attributes*, or *json* fields) it also helps declutter your models and controllers.
 
 Form objects are great for cases like the one we've been going over:
 
@@ -136,7 +136,7 @@ class NewUserForm < ActiveRecord::Model
 end
 ```
 
-Now we keep validations that ensure our data is in a state our application can handle in the model (users have name, email and password_hash - these belong in the database as well) and validations that are tied to user registration in a object that sole purpose is validating user input for that specific action.
+Now we keep validations that ensure our data is in a state our application can handle in the model and validations that are tied to user registration in a object that sole purpose is validating user input for that specific action  (users have name, email and password_hash validations belong in the database as well).
 
 If the requirements change which users are allowed to sign up, only one class needs to be changed. Because the changes are self contained you don't have to worry about making sure your new validations don't break in other cases. They will only run on user registration.
 
