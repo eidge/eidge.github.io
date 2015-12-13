@@ -107,8 +107,9 @@ class User < ActiveRecord::Base
 end
 
 class NewUserForm < ActiveRecord::Model
-  attr_accessor :first_name, :email, :password
+  attr_accessor :first_name, :email, password
   
+  validates :first_name, :email, :password, presence: true
   validate :user_is_named_paul
   
   def paul?
@@ -135,6 +136,14 @@ class NewUserForm < ActiveRecord::Model
 end
 ```
 
-Now we keep validations that ensure our data is in a state our application can handle (users have an email and password) in the model and validations that are tied to user registration in a object that sole purpose is validating user input for that specific action.
+Now we keep validations that ensure our data is in a state our application can handle in the model (users have name, email and password_hash - these belong in the database as well) and validations that are tied to user registration in a object that sole purpose is validating user input for that specific action.
 
 If the requirements change which users are allowed to sign up, only one class needs to be changed. Because the changes are self contained you don't have to worry about making sure your new validations don't break in other cases. They will only run on user registration.
+
+### Summing up
+
+- When writing a validation, try to figure out which layer you're validating. Are you guaranteing data integrity and therefore you should also write a database constraint? Are you guaranteing you application data is in valid, computable state? Or are you enforcing business logic as data?
+
+- Form objects are a good tool to declutter your models and controllers from parameter validation, complex associations forms and to move your validations closer to the user input.
+
+- When in doubt, prefer to write your validations in the model and refactor them out to form objects once you're sure they do not belong there. If you end up instantiating form objects outside of controllers and without user input, you're doing something wrong.
