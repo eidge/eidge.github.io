@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
 end
 
 class NewUserForm < ActiveRecord::Model
-  attr_accessor :first_name, :email, password
+  attr_accessor :first_name, :email, :password
   
   validates :first_name, :email, :password, presence: true
   validate :user_is_named_paul
