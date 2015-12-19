@@ -9,8 +9,6 @@ Coming from Ruby and growing a bit tired of resorting to caching every time thin
 
 Needless to say, it’s blazingly fast!
 
-(this should probably go into the sum part) I’m quite impressed I must say, seeing render times measured in microseconds is just something you’re not used to when you’re developing a Rails application.
-
 ### Building API’s with phoenix
 
 With the market revolving more and more around smartphone and multi-client applications, I’ve been writing API based applications for a while now.
@@ -31,9 +29,9 @@ end
 
 Although this works great for HTML views, I didn’t really think it felt natural for rendering an API response, so I set out to build a simple serialization mechanism.
 
-When writing Ruby, I usually resort to either ActiveModel Serializers or Grape Entities, but this time around I wanted a simpler, more lightweight approach to go with the functional style Elixir has to offer.
-
 ### Building an API Facade Library
+
+When writing Ruby, I usually resort to either ActiveModel Serializers or Grape Entities, but this time around I wanted a simpler, more lightweight approach to go with the functional style Elixir has to offer.
 
 I started by defining the way I wanted to write my serializers knowing that I wanted them to be format agnostic (they shouldn’t really care wether we’re rendering JSON or XML or whatever else) and that a single method should handle both a single resource or a list of resources.
 
@@ -221,8 +219,18 @@ types or necessary but undefined methods.
 
 ### Wrapping Up
 
-- We managed to write a serialization abstraction that's both simple
-  to use and write.
+I must say I'm quite impressed with Elixir. Not only it is great to see your
+endpoints return in microseconds rather then half a second as the functional
+paradigm seems to fit perfectly around the data transformation and request life
+cycle we work with when developing web applications.
 
-- We relied on Elixir macros to share functionality across modules and to
-  guarantee our interfaces are correctly implemented.
+When working with dynamic languages I sometimes miss the ability to explicitly
+define interfaces, as implicit interfaces do come at the cost of needing more
+documentation and/or extra runtime checks. Elixir really shines here, as besides
+supporting implicit interfaces, the mix between pattern matching and explicit
+interface definition allows for type safety when needed without runtime costs.
+
+Elixir is really fun and I'll probably end up writing a few more posts about it!
+
+(If you enjoyed this, I sometimes tweet about elixir, ruby and other dev rants at
+@eidgeare.)
