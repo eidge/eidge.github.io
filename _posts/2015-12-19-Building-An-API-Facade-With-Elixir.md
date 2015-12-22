@@ -232,4 +232,4 @@ supporting implicit interfaces, the mix between pattern matching and explicit
 interface definition allows for type safety when needed without too much runtime overhead.
 
 Elixir is really fun and I'll probably end up writing a few more posts about it,
-if you enjoyed this, do consider following me on twitter [@eidgeare](https://twitter/eidgeare)!
+if you enjoyed this, do consider following me on twitter [@eidgeare](https://twitter.com/eidgeare)!
