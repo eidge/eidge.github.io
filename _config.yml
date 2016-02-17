@@ -1,33 +1,44 @@
-name: John Doe
-bio: 'A Man who travels the world eating noodles'
-picture: 'assets/images/profile.jpg'
+# Name of your site (displayed in the header)
+name: Hugo Ribeira
 
-url: http://sergiokopplin.github.io/indigo
-# your url: http://USERNAME.github.io
-permalink: /:title/
+# Short bio or description (displayed in the header)
+bio: Full-time geek with a crush on full-stack dev and biz. Paragliding pilot.
 
-markdown: kramdown
-highlighter: rouge
-
-analytics: 'UA-MYANALYTICS'
-disqus: mydisqus
-facebook: myfacebook
-twitter: mytwitter
-instagram: myinstagram
-linkedin: mylinkedin
-youtube: myyoutube
-spotify: myspotify
-github: mygithub
-email: myemail@gmail.com
-
-exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor]
+# URL of your avatar or profile pic (you could use your GitHub profile pic)
+picture: assets/images/profile.png
 
 # if you don't need pagination, comment the *paginate* configs below
 # paginate: 5
 # paginate_path: "blog/:num/"
 
 # if you don't need projects, comment the *projects* configs below
-projects: true
+projects: false
+
+#
+# Flags below are optional
+#
+analytics: UA-42257282-3
+disqus: hugoribeira
+twitter: mytwitter
+linkedin: https://pt.linkedin.com/in/hugo-ribeira-53629545
+github: eidge
+twitter: eidgeare
+rss: http://hugoribeira.com/feed.xml
+
+# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
+# Used for Sitemap.xml and your RSS feed
+url: http://hugoribeira.com
+
+highlighter: rouge
+permalink: /:title/
+
+# The release of Jekyll Now that you're using
+version: v1.0.0
+
+# Set the Sass partials directory, as we're using @imports
+sass:
+  sass_dir: _scss
+  style: :expanded # You might prefer to minify using :compressed
 
 gems:
   - jemoji
@@ -39,4 +50,7 @@ gems:
   - jekyll-paginate
 
 jekyll-mentions:
-    base_url: https://github.com
+  base_url: https://github.com
+
+# Exclude these files from your production _site
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor]

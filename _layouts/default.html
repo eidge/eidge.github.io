@@ -26,18 +26,9 @@ layout: compress
 <body>
 
     <div class="site-wrapper">
-        {% if page.tag %}
-            <div class="post">
-        {% else %}
-            {% if page.title == "About" %}
-                <div class="page">
-            {% else %}
-                <div class="{{ page.title | downcase }}">
-            {% endif %}
-        {% endif %}
-
-            {{ content }}
-        </div>
+      <div class="home">
+          {{ content }}
+      </div>
     </div>
 
     {% include icons.html %}

@@ -1,8 +1,12 @@
+---
+layout: default
+title: About
+---
 <header class="home__header">
     <img alt="{{ site.name }}" src="{{ site.url }}/{{ site.picture }}" />
 
     <h1>{{ site.name }}</h1>
-    <h2>{{ site.bio }}</h2>
+    <h2>{{ content }}</h2>
 
     <div class="home__header-social">
         <a href="http://twitter.com/{{ site.twitter }}" target="_blank"><svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg></a>
@@ -12,3 +16,6 @@
 </header>
 
 {% include nav.html %}
+
+
+{% include footer.html %}
