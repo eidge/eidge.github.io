@@ -23,9 +23,9 @@ footer-links:
   flickr: 
   github: eidge
   instagram: 
-  linkedin: 
+  linkedin: https://pt.linkedin.com/in/hugo-ribeira-53629545
   pinterest: 
-  rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
+  rss: http://hugoribeira.com/feed.xml
   twitter: eidgeare
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
 
