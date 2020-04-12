@@ -23,11 +23,11 @@ twitter: mytwitter
 linkedin: in/hugo-ribeira-53629545
 github: eidge
 twitter: eidgeare
-rss: http://hugoribeira.com/feed.xml
+rss: http://www.hugoribeira.com/feed.xml
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: http://hugoribeira.com
+url: http://www.hugoribeira.com
 
 highlighter: rouge
 permalink: /:title/
